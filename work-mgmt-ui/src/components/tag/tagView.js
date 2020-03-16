@@ -13,9 +13,14 @@ class TagView extends Component {
 
     console.debug(`[${this.componentName}] constructor()`);
   }
-  componentDidMount() {
+
+  async componentDidMount() {
     console.debug(`[${this.componentName}] componentDidMount()`);
-    this.setState({ tagList: TagService.getAll() });
+
+    const tagList = await TagService.getAllAsync();
+    this.setState({ tagList });
+
+    console.debug(`[${this.componentName}] componentDidMount() >> tagList: `, tagList);
   }
 
   selectedTagChanged = selectedTag => {

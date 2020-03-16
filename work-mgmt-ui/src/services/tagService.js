@@ -1,28 +1,9 @@
-const hardCodedTagList = [
-  { "id": 1, "name": "tag01", "deleted": 0, "modifiedOn": "2020-01-01T01:00:01Z" },
-  { "id": 2, "name": "tag02", "deleted": 0, "modifiedOn": "2020-01-01T01:00:02Z" },
-  { "id": 3, "name": "tag03", "deleted": 0, "modifiedOn": "2020-01-01T01:00:03Z" }
-];
+import { BaseService } from "./baseService";
+import Constants from "../shared/constants";
 
-class TagService {
+class TagService extends BaseService {
   constructor() {
-    this.tagList = hardCodedTagList;
-  }
-
-  getAll() {
-    return this.tagList;
-  }
-
-  get(id) {
-
-  }
-
-  update(workItem) {
-
-  }
-
-  delete(id) {
-
+    super("TagService", Constants.API.TagsEndpoint);
   }
 }
 
