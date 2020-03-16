@@ -1,10 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 import Constants from "../../shared/constants";
+import { WorkItemModel } from "../../models/workItemModel";
 
-class WorkItemBase extends Component {
-  componentName = "WorkItemBase";
-  workItem = {};
-  state = {
+export interface WorkItemBaseProps {
+  workItem: WorkItemModel;
+  history: any;
+  mode: any;
+};
+export interface WorkItemBaseState {
+  id: number;
+  name: string;
+  description: string;
+  status: string;
+
+  initialized: boolean;
+};
+
+export class WorkItemBase extends React.Component<WorkItemBaseProps, WorkItemBaseState> {
+  private componentName: string = "WorkItemBase";
+  private workItem: WorkItemModel | undefined;
+  state: WorkItemBaseState = {
     id: -1,
     name: "",
     description: "",
@@ -13,28 +28,14 @@ class WorkItemBase extends Component {
     initialized: false
   };
 
-  static getDerivedStateFromProps(props, state) {
-    console.debug(`[WorkItemBase] getDerivedStateFromProps()`);
+  // constructor(props: WorkItemBaseProps, state: WorkItemBaseState) {
+  //   super(props, state);
+  //   this.workItem = new WorkItem();
+  // }
 
-    let value;
-    if(!state.initialized) {
-      value = {
-        ...props,
-        initialized: true
-      };
-    }
-    else {
-      value = null;
-    }
-
-    console.debug(`[WorkItemBase] getDerivedStateFromProps()`, value);
-    return value;
+  componentWillMount() {
+    console.debug(`[${this.componentName}] componentWillMount()`);
   };
-
-  // "componentWillMount" is legacy method when used in conjunction with "getDerivedStateFromProps"
-  // componentWillMount() {
-  //   console.debug(`[${this.componentName}] componentWillMount()`);
-  // };
 
   componentDidMount() {
     console.debug(`[${this.componentName}] componentDidMount()`, this.props.workItem);
@@ -42,30 +43,33 @@ class WorkItemBase extends Component {
     // const { id, name, description, status } = this.props.workItem;
   };
 
-  // componentDidUpdate() {
-  //   console.debug(`[${this.componentName}] componentDidUpdate()`);
-  // };
+  componentDidUpdate() {
+    console.debug(`[${this.componentName}] componentDidUpdate()`);
+  };
 
   componentWillUnmount() {
     console.debug(`[${this.componentName}] componentWillUnmount()`);
   };
 
 
-  handleFormDataChange = event => {
+  handleFormDataChange = (event: any) => {
     const name = event.target.name;
     const value = event.target.value;
     console.debug(`[${this.componentName}] handleFormDataChange() >> '${name}', '${value}'.`);
+    // @ts-ignore
     this.setState({ [name]: value });
   };
 
-  handleSaveChanges = event => {
+  handleSaveChanges = (event: any) => {
     console.debug(`[${this.componentName}] handleSaveChanges()`);
 
     event.preventDefault();
+    // FIXME Remove hardcoding
     this.props.history.push("/workitem");
   };
 
   render() {
+    this.workItem = this.workItem || new WorkItemModel();
     console.debug(`[${this.componentName}] render() >> Rendering >> workItem: `, this.workItem);
 
     // TODO Convert datetimes to local datetime
@@ -74,8 +78,8 @@ class WorkItemBase extends Component {
     return (
       <div>
         <p>Work Item Detail</p>
-        <form onSubmit={() => this.handleSaveChanges()}>
-          <fieldset disabled={formMode}>
+        <form onSubmit={(e) => this.handleSaveChanges(e)}>
+          <fieldset disabled={formMode === Constants.FormMode.View}>
             <div className="form-group row">
               <label htmlFor="wiId" className="col-sm-1 col-form-label col-form-label-sm">
                 Id
@@ -105,7 +109,7 @@ class WorkItemBase extends Component {
               </label>
               <div className="col-sm-11">
                 <textarea
-                  rows="10"
+                  rows={10}
                   className="form-control form-control-sm"
                   name="description"
                   id="wiDescription"
@@ -143,5 +147,3 @@ class WorkItemBase extends Component {
     );
   }
 }
-
-export default WorkItemBase;

@@ -23,14 +23,14 @@
     ],
 
     "categories" : [
-        { "id": 1, "name": "category01", "deleted": 0, "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 2, "name": "category01", "deleted": 0, "modifiedOn": "2020-01-01T01:00:02Z" },
-        { "id": 3, "name": "category01", "deleted": 0, "modifiedOn": "2020-01-01T01:00:03Z" }
+        { "id": 1, "name": "category01", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
+        { "id": 2, "name": "category01", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
+        { "id": 3, "name": "category01", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" }
     ],
 
     "tags" : [
-        { "id": 1, "name": "tag01", "deleted": 0, "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 2, "name": "tag02", "deleted": 0, "modifiedOn": "2020-01-01T01:00:02Z" },
-        { "id": 3, "name": "tag03", "deleted": 0, "modifiedOn": "2020-01-01T01:00:03Z" }
+        { "id": 1, "name": "tag01", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
+        { "id": 2, "name": "tag02", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
+        { "id": 3, "name": "tag03", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" }
     ]
 }

@@ -11,3 +11,9 @@
     2. Added components, services and shared functions/classes
     3. Added navigation using react-router
     4. Added REST API for data
+2. feature/002-typescript-support"
+    1. Added TypeScript support
+        1. Created model classes
+        2. Converted all WorkItem components to TypeScript
+        3. Converted all Services to TypeScript
+    2. Migrate rest of components over next few iterations

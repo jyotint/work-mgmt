@@ -1,21 +1,29 @@
-import React, { Fragment, Component } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 // import { Route, Switch, NavLink, useRouteMatch } from "react-router-dom";
+import { WorkItemModel } from "../../models/workItemModel";
 import { WorkItemListRow } from "./workItemListRow";
 
 const toolbarStyle = {
   backgroundColor: "#e3f2fd"
 };
 
-class WorkItemList extends Component {
-  componentName = "WorkItemList";
+export interface WorkItemListProps {
+  selectedWorkItem: WorkItemModel;
+  routeMatch: any;
+  workItemList: WorkItemModel[] | undefined;
+  newWorkItem: any;
+  editWorkItem: any;
+  saveWorkItem: any;
+  deleteWorkItem: any;
+  selectedWorkItemChanged: any;
+};
+export interface WorkItemListState {};
 
-  constructor() {
-    super();
-    console.debug(`[${this.componentName}] constructor()`);
-  }
+export class WorkItemList extends React.Component<WorkItemListProps, WorkItemListState> {
+  private componentName: string = "WorkItemList";
 
-  isAnyWorkItemSelected = () => {
+  isAnyWorkItemSelected = (): boolean => {
     const selectedWorkItem = this.props.selectedWorkItem;
     const selectedWorkItemId = selectedWorkItem === undefined ? -1 : selectedWorkItem.id;
     const isWorkItemSelected = selectedWorkItem === undefined ? false : (selectedWorkItemId !== undefined);
@@ -36,7 +44,7 @@ class WorkItemList extends Component {
     console.debug(`[${this.componentName}] render() >> Rendering >> workItemList: `, workItemList);
 
     return (
-      <Fragment>
+      <React.Fragment>
         <nav className="navbar navbar-expand-lg navbar-light bg-light" style={toolbarStyle}>
           <div className="collapse navbar-collapse" id="navbarNav">
             <NavLink
@@ -130,9 +138,7 @@ class WorkItemList extends Component {
             ))}
           </tbody>
         </table>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
-
-export default WorkItemList;

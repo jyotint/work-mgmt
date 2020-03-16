@@ -1,17 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
+import { WorkItemModel } from "../../models/workItemModel";
 
-class WorkItemListRow extends Component {
-  componentName = "WorkItemListRow";
+export interface  WorkItemListRowProps {
+  selectedWorkItem: WorkItemModel;
+  workItem: WorkItemModel;
+  selectedWorkItemChanged: any;
+};
+export interface  WorkItemListRowState {};
 
-  selectedWorkItemChanged = selectedWorkItem => {
+export class WorkItemListRow extends React.Component<WorkItemListRowProps, WorkItemListRowState> {
+  private componentName: string = "WorkItemListRow";
+
+  selectedWorkItemChanged = (selectedWorkItem: WorkItemModel) => {
     console.debug(`[${this.componentName}] selectedWorkItemChanged() >> id: ${selectedWorkItem.id}`);
     this.props.selectedWorkItemChanged(selectedWorkItem);
   };
 
-  shouldHighlightCurrentWorkItem = currentWorkItem => {
-    // console.debug(`[${this.componentName}] shouldHighlightCurrentWorkItem()`);
-    // console.debug(`[${this.componentName}] shouldHighlightCurrentWorkItem()`, this);
-    // console.debug(`[${this.componentName}] shouldHighlightCurrentWorkItem()`, currentWorkItem);
+  shouldHighlightCurrentWorkItem = (currentWorkItem: WorkItemModel): boolean => {
     return this.props.selectedWorkItem.id === currentWorkItem.id;
   };
 
@@ -38,5 +43,3 @@ class WorkItemListRow extends Component {
     );
   }
 }
-
-export { WorkItemListRow };
