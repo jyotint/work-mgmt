@@ -1,5 +1,9 @@
 # Work Management application
 
+Application to manage and control personal work items.
+
+Status: In Development.
+
 **Technologies Used:** JavaScript, Node JS, React v16, Docker, Docker-Compose
 
 ## Overview
