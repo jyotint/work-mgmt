@@ -1,7 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 // import { Route, Switch, NavLink, useRouteMatch } from "react-router-dom";
-import { WorkItemModel } from "../../models/workItemModel";
+import { ActionArgsVoidAsync } from "../../shared/typeScriptExtension";
+import { WorkItemModelList, WorkItemModelObject } from "./workItemShared";
 import { WorkItemListRow } from "./workItemListRow";
 
 const toolbarStyle = {
@@ -9,13 +10,15 @@ const toolbarStyle = {
 };
 
 export interface WorkItemListProps {
-  selectedWorkItem: WorkItemModel;
+  selectedWorkItem: WorkItemModelObject;
   routeMatch: any;
-  workItemList: WorkItemModel[] | undefined;
-  newWorkItem: any;
-  editWorkItem: any;
-  saveWorkItem: any;
-  deleteWorkItem: any;
+  history: any;
+  workItemList: WorkItemModelList;
+  newWorkItem: ActionArgsVoidAsync;
+  viewWorkItem: ActionArgsVoidAsync;
+  editWorkItem: ActionArgsVoidAsync;
+  saveWorkItem: ActionArgsVoidAsync;
+  deleteWorkItem: ActionArgsVoidAsync;
   selectedWorkItemChanged: any;
 };
 export interface WorkItemListState {};
@@ -24,24 +27,46 @@ export class WorkItemList extends React.Component<WorkItemListProps, WorkItemLis
   private componentName: string = "WorkItemList";
 
   isAnyWorkItemSelected = (): boolean => {
-    const selectedWorkItem = this.props.selectedWorkItem;
-    const selectedWorkItemId = selectedWorkItem === undefined ? -1 : selectedWorkItem.id;
-    const isWorkItemSelected = selectedWorkItem === undefined ? false : (selectedWorkItemId !== undefined);
-    console.debug(`[${this.componentName}] isAnyWorkItemSelected() >> ${isWorkItemSelected}, id: `, selectedWorkItemId);
+    const selectedWorkItemId = this.props.selectedWorkItem?.id;
+    const isWorkItemSelected = selectedWorkItemId !== undefined;
+    // console.debug(`[${this.componentName}] isAnyWorkItemSelected() >> ${isWorkItemSelected}, id: `, selectedWorkItemId);
     return isWorkItemSelected;
-  };
+  }
 
   componentDidMount() {
     console.debug(`[${this.componentName}] componentDidMount()`);
   }
 
+  newWorkItemHandler(e: any) {
+    e.preventDefault();
+    // this.props.newWorkItem(this.props.selectedWorkItem?.id);
+  }
+
+  viewWorkItemHandler(e: any) {
+    e.preventDefault();
+    this.props.history.push(`${this.props.routeMatch.url}/${this.props.selectedWorkItem?.id}?ot=view`)
+    this.props.viewWorkItem(this.props.selectedWorkItem?.id);
+  }
+
+  editWorkItemHandler(e: any) {
+    e.preventDefault();
+    // this.props.editWorkItem(this.props.selectedWorkItem?.id);
+  }
+
+  deleteWorkItemHandler(e: any) {
+    e.preventDefault();
+    // TODO Prompt prior to executing a work item delete
+    this.props.deleteWorkItem(this.props.selectedWorkItem?.id);
+  }
+
   render() {
     const selectedWorkItem = this.props.selectedWorkItem;
+    const selectedWorkItemId = selectedWorkItem?.id;
     const workItemList = this.props.workItemList || [];
     const routeMatch = this.props.routeMatch;
     const nothingSelected = !this.isAnyWorkItemSelected();
-    console.debug(`[${this.componentName}] render() >> Rendering >> routeMatch: `, routeMatch);
-    console.debug(`[${this.componentName}] render() >> Rendering >> workItemList: `, workItemList);
+    // console.debug(`[${this.componentName}] render() >> Rendering >> routeMatch: `, routeMatch);
+    // console.debug(`[${this.componentName}] render() >> Rendering >> workItemList: `, workItemList);
 
     return (
       <React.Fragment>
@@ -49,9 +74,9 @@ export class WorkItemList extends React.Component<WorkItemListProps, WorkItemLis
           <div className="collapse navbar-collapse" id="navbarNav">
             <NavLink
               exact
-              className="nav-item nav-link btn btn-sm btn-primary"
+              className="nav-item nav-link btn btn-sm btn-primary disabled"
               to={`${routeMatch.url}/new`}
-              onClick={() => this.props.newWorkItem()}
+              onClick={(e) => this.newWorkItemHandler(e)}
             >
               New
             </NavLink>
@@ -59,8 +84,9 @@ export class WorkItemList extends React.Component<WorkItemListProps, WorkItemLis
               <NavLink
                 exact
                 className="nav-item nav-link btn btn-sm btn-primary"
-                to={`${routeMatch.url}/${selectedWorkItem.id}/view`}
+                to={`${routeMatch.url}/${selectedWorkItemId}?ot=view`}
                 activeClassName="active"
+                onClick={(e) => this.viewWorkItemHandler(e)}
               >
                 View
               </NavLink>
@@ -68,9 +94,10 @@ export class WorkItemList extends React.Component<WorkItemListProps, WorkItemLis
             {nothingSelected ? null : (
               <NavLink
                 exact
-                className="nav-item nav-link btn btn-sm btn-primary"
-                to={`${routeMatch.url}/${selectedWorkItem.id}/edit`}
+                className="nav-item nav-link btn btn-sm btn-primary disabled"
+                to={`${routeMatch.url}/${selectedWorkItemId}?ot=edit`}
                 activeClassName="active"
+                onClick={(e) => this.editWorkItemHandler(e)}
               >
                 Edit
               </NavLink>
@@ -79,8 +106,9 @@ export class WorkItemList extends React.Component<WorkItemListProps, WorkItemLis
               <NavLink
                 exact
                 className="nav-item nav-link btn btn-sm btn-danger"
-                to={`${routeMatch.url}/${selectedWorkItem.id}/delete`}
+                to={`${routeMatch.url}/${selectedWorkItemId}?ot=delete`}
                 activeClassName="active"
+                onClick={(e) => this.deleteWorkItemHandler(e)}
               >
                 Delete
               </NavLink>

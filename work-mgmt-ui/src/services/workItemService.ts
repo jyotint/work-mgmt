@@ -1,13 +1,17 @@
 import Constants from "../shared/constants";
 import { WorkItemModel } from "./../models/workItemModel";
 import { BaseService } from "./baseService";
+import { ResponseModel } from "../models/responseModel";
+
 
 class WorkItemService extends BaseService {
   constructor() {
     super("WorkItemService", Constants.API.WorkItemsEndpoint);
   }
 
-  async createAsync(data: WorkItemModel) {
+  async createAsync(data: WorkItemModel): Promise<ResponseModel> {
+    let result: ResponseModel;
+
     try {
       const url = this.getBaseUrl();
       console.debug(`${this.serviceName}::createAsync(): "${url}"`)
@@ -18,12 +22,19 @@ class WorkItemService extends BaseService {
         headers: this.getHeaders(),
         body: JSON.stringify(data)
       });
+
+      result = new ResponseModel(0, undefined, undefined);
     } catch (err) {
       console.error(err);
+      result = new ResponseModel(0, err, undefined);
     }
+
+    return result;
   }
 
-  async updateAsync(id: string, data: WorkItemModel) {
+  async updateAsync(id: string, data: WorkItemModel): Promise<ResponseModel> {
+    let result: ResponseModel;
+
     try {
       const url = this.getBaseUrlWithId(id);
       console.debug(`${this.serviceName}::updateAsync(${id}): "${url}"`)
@@ -34,12 +45,19 @@ class WorkItemService extends BaseService {
         headers: this.getHeaders(),
         body: JSON.stringify(data)
       });
+
+      result = new ResponseModel(0, undefined, undefined);
     } catch (err) {
       console.error(err);
+      result = new ResponseModel(0, err, undefined);
     }
+
+    return result;
   }
 
-  async deleteAsync(id: string) {
+  async deleteAsync(id: string): Promise<ResponseModel> {
+    let result: ResponseModel;
+
     try {
       const url = this.getBaseUrlWithId(id);
       console.debug(`${this.serviceName}::deleteAsync(${id}): "${url}"`)
@@ -48,9 +66,14 @@ class WorkItemService extends BaseService {
       fetch(url, {
         method: "DELETE"
       });
+
+      result = new ResponseModel(0, undefined, undefined);
     } catch (err) {
       console.error(err);
+      result = new ResponseModel(0, err, undefined);
     }
+
+    return result;
   }
 }
 

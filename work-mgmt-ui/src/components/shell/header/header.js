@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
+import Constants from "../../../shared/constants";
 
 class Header extends Component {
   componentName = "Header";
@@ -28,17 +29,17 @@ class Header extends Component {
 
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
-                <NavLink exact className="nav-item nav-link" to="/" activeClassName="active">
+                <NavLink exact className="nav-item nav-link" to={Constants.Route.Root} activeClassName="active">
                   Home
                   {/* Home <span className="sr-only">(current)</span> */}
                 </NavLink>
-                <NavLink exact className="nav-item nav-link" to="/workitem" activeClassName="active">
+                <NavLink exact className="nav-item nav-link" to={Constants.Route.WorkItems} activeClassName="active">
                   Work Items
                 </NavLink>
-                <NavLink exact className="nav-item nav-link" to="/categories" activeClassName="active">
+                <NavLink exact className="nav-item nav-link" to={Constants.Route.Categories} activeClassName="active">
                   Categories
                 </NavLink>
-                <NavLink exact className="nav-item nav-link" to="/tags" activeClassName="active">
+                <NavLink exact className="nav-item nav-link" to={Constants.Route.Tags} activeClassName="active">
                   Tags
                 </NavLink>
               </div>
@@ -50,4 +51,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);
