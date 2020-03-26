@@ -1,4 +1,5 @@
 import Constants from "../shared/constants";
+import { ResponseModel } from "../models/responseModel";
 
 export class BaseService {
   protected serviceName: string = "WorkItemService";
@@ -11,36 +12,40 @@ export class BaseService {
 
   // TODO HTTP Status Code check, throwing Error to caller
 
-  async getAllAsync() {
-    let data = [];
+  async getAllAsync(): Promise<ResponseModel> {
+    let result: ResponseModel;
 
     try {
       const url = this.getBaseUrl();
       console.debug(`${this.serviceName}::getAllAsync(): "${url}"`)
 
       const response = await fetch(url);
-      data = await response.json();
+      const data = await response.json();
+      result = new ResponseModel(0, undefined, data);
     } catch (err) {
       console.error(err);
+      result = new ResponseModel(-1, err, undefined)
     }
 
-    return data;
+    return result;
   }
 
-  async getAsync(id: string) {
-    let data = {};
+  async getAsync(id: string): Promise<ResponseModel> {
+    let result: ResponseModel;
 
     try {
       const url = this.getBaseUrlWithId(id);
       console.debug(`${this.serviceName}::getAsync(${id}): "${url}"`)
 
       const response = await fetch(url);
-      data = await response.json();
+      const data = await response.json();
+      result = new ResponseModel(0, undefined, data);
     } catch (err) {
       console.error(err);
+      result = new ResponseModel(-1, err, undefined)
     }
 
-    return data;
+    return result;
   }
 
   constructUrl(endpoint: string, id?: string): string {

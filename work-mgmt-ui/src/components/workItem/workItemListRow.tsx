@@ -1,8 +1,9 @@
 import React from "react";
 import { WorkItemModel } from "../../models/workItemModel";
+import { WorkItemModelObject } from "./workItemShared";
 
 export interface  WorkItemListRowProps {
-  selectedWorkItem: WorkItemModel;
+  selectedWorkItem: WorkItemModelObject;
   workItem: WorkItemModel;
   selectedWorkItemChanged: any;
 };
@@ -12,17 +13,17 @@ export class WorkItemListRow extends React.Component<WorkItemListRowProps, WorkI
   private componentName: string = "WorkItemListRow";
 
   selectedWorkItemChanged = (selectedWorkItem: WorkItemModel) => {
-    console.debug(`[${this.componentName}] selectedWorkItemChanged() >> id: ${selectedWorkItem.id}`);
+    // console.debug(`[${this.componentName}] selectedWorkItemChanged() >> id: ${selectedWorkItem.id}`);
     this.props.selectedWorkItemChanged(selectedWorkItem);
-  };
+  }
 
   shouldHighlightCurrentWorkItem = (currentWorkItem: WorkItemModel): boolean => {
-    return this.props.selectedWorkItem.id === currentWorkItem.id;
-  };
+    return this.props.selectedWorkItem?.id === currentWorkItem.id;
+  }
 
   render() {
     let item = this.props.workItem;
-    console.debug(`[${this.componentName}] render() >> Rendering...`);
+    // console.debug(`[${this.componentName}] render() >> Rendering...`);
     // console.debug(`[${this.componentName}] render() >> Rendering >> WorkItem: `, item);
 
     // TODO Convert datetimes to local datetime

@@ -8,6 +8,17 @@ const Constants = {
     Edit: "FormModeEdit"
   },
 
+  Route: {
+    Root: "/",
+    Id: "/:id",
+
+    WorkItems: "/workitems",
+    WorkItemsWithId: "/workitems/:id",
+
+    Tags: "/tags",
+    Categories: "/categories"
+  },
+
   API: {
     BaseUrl: process.env.REACT_APP_API_BASE_URL,
     WorkItemsEndpoint: "workItems",
