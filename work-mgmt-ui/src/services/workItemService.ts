@@ -3,10 +3,9 @@ import { WorkItemModel } from "./../models/workItemModel";
 import { BaseService } from "./baseService";
 import { ResponseModel } from "../models/responseModel";
 
-
 class WorkItemService extends BaseService {
   constructor() {
-    super("WorkItemService", Constants.API.WorkItemsEndpoint);
+    super("WorkItemService", Constants.api.workItemsEndpoint);
   }
 
   async createAsync(data: WorkItemModel): Promise<ResponseModel> {
@@ -17,7 +16,7 @@ class WorkItemService extends BaseService {
       console.debug(`${this.serviceName}::createAsync(): "${url}"`)
 
       // const response = fetch(url, {
-      fetch(url, {
+      const response = await fetch(url, {
         method: "POST",
         headers: this.getHeaders(),
         body: JSON.stringify(data)
@@ -40,7 +39,7 @@ class WorkItemService extends BaseService {
       console.debug(`${this.serviceName}::updateAsync(${id}): "${url}"`)
 
       // const response = fetch(url, {
-      fetch(url, {
+      const response = await fetch(url, {
         method: "PUT",
         headers: this.getHeaders(),
         body: JSON.stringify(data)
@@ -48,10 +47,10 @@ class WorkItemService extends BaseService {
 
       result = new ResponseModel(0, undefined, undefined);
     } catch (err) {
-      console.error(err);
       result = new ResponseModel(0, err, undefined);
     }
 
+    console.debug("23");
     return result;
   }
 
@@ -63,7 +62,7 @@ class WorkItemService extends BaseService {
       console.debug(`${this.serviceName}::deleteAsync(${id}): "${url}"`)
 
       // const response = fetch(url, {
-      fetch(url, {
+      const response = await fetch(url, {
         method: "DELETE"
       });
 

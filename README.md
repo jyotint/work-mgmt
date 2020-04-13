@@ -28,6 +28,12 @@ Application to create and manage work items.
     4. Implemented heirarchical routing for WorkItem workspace
     5. Refactored other workspaces
     6. Pending - New and Edit WorkItem
+4. Git Branch: "feature/004-formik-form-mgmt"
+    1. Ported WorkItemBase to use [Formik](https://jaredpalmer.com/formik/) (Build forms in React)
+    2. Converted "WorkItemList" and "WorkItemListRow" to React Function Component
+    3. Created meta data service for Work Item Status
+    4. Created UI Control Component for Input, TextArea and DropDown
+    5. Created UI Constants for usage by control components
 
 **Steps to run the application:**
 

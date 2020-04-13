@@ -29,17 +29,17 @@ class Header extends Component {
 
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
-                <NavLink exact className="nav-item nav-link" to={Constants.Route.Root} activeClassName="active">
+                <NavLink exact className="nav-item nav-link" to={Constants.route.root} activeClassName="active">
                   Home
                   {/* Home <span className="sr-only">(current)</span> */}
                 </NavLink>
-                <NavLink exact className="nav-item nav-link" to={Constants.Route.WorkItems} activeClassName="active">
+                <NavLink exact className="nav-item nav-link" to={Constants.route.workItems} activeClassName="active">
                   Work Items
                 </NavLink>
-                <NavLink exact className="nav-item nav-link" to={Constants.Route.Categories} activeClassName="active">
+                <NavLink exact className="nav-item nav-link" to={Constants.route.categories} activeClassName="active">
                   Categories
                 </NavLink>
-                <NavLink exact className="nav-item nav-link" to={Constants.Route.Tags} activeClassName="active">
+                <NavLink exact className="nav-item nav-link" to={Constants.route.tags} activeClassName="active">
                   Tags
                 </NavLink>
               </div>

@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "15f32080-052b-4bc5-b2a7-f5037b55c8cd",
+		"name": "WorkMgmt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "WorkItems",
+					"item": [
+						{
+							"name": "Get",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "35aae14b-bb94-40c1-97c6-b25b6f7ec42a",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ApiBaseUrlWithPort}}/workitems/1",
+									"host": [
+										"{{ApiBaseUrlWithPort}}"
+									],
+									"path": [
+										"workitems",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAll",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "35aae14b-bb94-40c1-97c6-b25b6f7ec42a",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ApiBaseUrlWithPort}}/workitems",
+									"host": [
+										"{{ApiBaseUrlWithPort}}"
+									],
+									"path": [
+										"workitems"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "WorkItemAssociations",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ApiBaseUrlWithPort}}/workItemAssociations/1",
+									"host": [
+										"{{ApiBaseUrlWithPort}}"
+									],
+									"path": [
+										"workItemAssociations",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ApiBaseUrlWithPort}}/workItemAssociations",
+									"host": [
+										"{{ApiBaseUrlWithPort}}"
+									],
+									"path": [
+										"workItemAssociations"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "WorkItemTags",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ApiBaseUrlWithPort}}/workItemTags",
+									"host": [
+										"{{ApiBaseUrlWithPort}}"
+									],
+									"path": [
+										"workItemTags"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "WorkItemTasks",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ApiBaseUrlWithPort}}/workItemTasks",
+									"host": [
+										"{{ApiBaseUrlWithPort}}"
+									],
+									"path": [
+										"workItemTasks"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ApiBaseUrlWithPort}}/categories",
+									"host": [
+										"{{ApiBaseUrlWithPort}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Tags",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ApiBaseUrlWithPort}}/tags",
+									"host": [
+										"{{ApiBaseUrlWithPort}}"
+									],
+									"path": [
+										"tags"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

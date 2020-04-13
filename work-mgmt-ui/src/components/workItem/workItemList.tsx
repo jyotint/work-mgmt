@@ -1,8 +1,7 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
-// import { Route, Switch, NavLink, useRouteMatch } from "react-router-dom";
-import { ActionArgsVoidAsync } from "../../shared/typeScriptExtension";
-import { WorkItemModelList, WorkItemModelObject } from "./workItemShared";
+import { ActionArgsVoidAsync, ObjectLiteral } from "../../shared/typeScriptExtension";
+import { WorkItemModelObject, WorkItemModelList } from "../../models/workItemModel";
 import { WorkItemListRow } from "./workItemListRow";
 
 const toolbarStyle = {
@@ -14,6 +13,7 @@ export interface WorkItemListProps {
   routeMatch: any;
   history: any;
   workItemList: WorkItemModelList;
+  metaData: ObjectLiteral;
   newWorkItem: ActionArgsVoidAsync;
   viewWorkItem: ActionArgsVoidAsync;
   editWorkItem: ActionArgsVoidAsync;
@@ -21,152 +21,94 @@ export interface WorkItemListProps {
   deleteWorkItem: ActionArgsVoidAsync;
   selectedWorkItemChanged: any;
 };
-export interface WorkItemListState {};
 
-export class WorkItemList extends React.Component<WorkItemListProps, WorkItemListState> {
-  private componentName: string = "WorkItemList";
+export const WorkItemList: React.FunctionComponent<WorkItemListProps> = (props: WorkItemListProps): ReactElement => {
+  // console.debug(`[WorkItemList] render() >> Rendering...`);
+  const selectedWorkItemId = props.selectedWorkItem?.id;
+  const workItemList = props.workItemList || [];
 
-  isAnyWorkItemSelected = (): boolean => {
-    const selectedWorkItemId = this.props.selectedWorkItem?.id;
-    const isWorkItemSelected = selectedWorkItemId !== undefined;
-    // console.debug(`[${this.componentName}] isAnyWorkItemSelected() >> ${isWorkItemSelected}, id: `, selectedWorkItemId);
-    return isWorkItemSelected;
-  }
+  const baseUrl: string = props.routeMatch.url;
+  const newObjectUrl: string = `${baseUrl}/new`;
+  const viewObjectUrl: string = `${baseUrl}/${selectedWorkItemId}?ot=view`;
+  const editObjectUrl: string = `${baseUrl}/${selectedWorkItemId}?ot=edit`;
+  const deleteObjectUrl: string = `${baseUrl}/${selectedWorkItemId}?ot=delete`;
+  const nothingSelected: boolean = selectedWorkItemId === undefined;
+  // console.debug(`[WorkItemList] render() >> Rendering >> workItemList: `, workItemList);
 
-  componentDidMount() {
-    console.debug(`[${this.componentName}] componentDidMount()`);
-  }
-
-  newWorkItemHandler(e: any) {
-    e.preventDefault();
-    // this.props.newWorkItem(this.props.selectedWorkItem?.id);
-  }
-
-  viewWorkItemHandler(e: any) {
-    e.preventDefault();
-    this.props.history.push(`${this.props.routeMatch.url}/${this.props.selectedWorkItem?.id}?ot=view`)
-    this.props.viewWorkItem(this.props.selectedWorkItem?.id);
-  }
-
-  editWorkItemHandler(e: any) {
-    e.preventDefault();
-    // this.props.editWorkItem(this.props.selectedWorkItem?.id);
-  }
-
-  deleteWorkItemHandler(e: any) {
-    e.preventDefault();
-    // TODO Prompt prior to executing a work item delete
-    this.props.deleteWorkItem(this.props.selectedWorkItem?.id);
-  }
-
-  render() {
-    const selectedWorkItem = this.props.selectedWorkItem;
-    const selectedWorkItemId = selectedWorkItem?.id;
-    const workItemList = this.props.workItemList || [];
-    const routeMatch = this.props.routeMatch;
-    const nothingSelected = !this.isAnyWorkItemSelected();
-    // console.debug(`[${this.componentName}] render() >> Rendering >> routeMatch: `, routeMatch);
-    // console.debug(`[${this.componentName}] render() >> Rendering >> workItemList: `, workItemList);
-
-    return (
-      <React.Fragment>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light" style={toolbarStyle}>
-          <div className="collapse navbar-collapse" id="navbarNav">
+  return (
+    <React.Fragment >
+      <nav className="navbar navbar-expand-lg navbar-light bg-light" style={toolbarStyle}>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <NavLink
+            exact
+            className="nav-item nav-link btn btn-sm btn-primary disabled"
+            to={newObjectUrl}
+            onClick={(e) => props.newWorkItem(e)}
+          >
+            New
+            </NavLink>
+          {nothingSelected ? null : (
             <NavLink
               exact
-              className="nav-item nav-link btn btn-sm btn-primary disabled"
-              to={`${routeMatch.url}/new`}
-              onClick={(e) => this.newWorkItemHandler(e)}
+              className="nav-item nav-link btn btn-sm btn-primary"
+              to={viewObjectUrl}
+              activeClassName="active"
+              onClick={(e) => {e.preventDefault(); props.viewWorkItem(selectedWorkItemId);}}
             >
-              New
+              View
             </NavLink>
-            {nothingSelected ? null : (
-              <NavLink
-                exact
-                className="nav-item nav-link btn btn-sm btn-primary"
-                to={`${routeMatch.url}/${selectedWorkItemId}?ot=view`}
-                activeClassName="active"
-                onClick={(e) => this.viewWorkItemHandler(e)}
-              >
-                View
-              </NavLink>
-            )}
-            {nothingSelected ? null : (
-              <NavLink
-                exact
-                className="nav-item nav-link btn btn-sm btn-primary disabled"
-                to={`${routeMatch.url}/${selectedWorkItemId}?ot=edit`}
-                activeClassName="active"
-                onClick={(e) => this.editWorkItemHandler(e)}
-              >
-                Edit
-              </NavLink>
-            )}
-            {nothingSelected ? null : (
-              <NavLink
-                exact
-                className="nav-item nav-link btn btn-sm btn-danger"
-                to={`${routeMatch.url}/${selectedWorkItemId}?ot=delete`}
-                activeClassName="active"
-                onClick={(e) => this.deleteWorkItemHandler(e)}
-              >
-                Delete
-              </NavLink>
-            )}
+          )}
+          {nothingSelected ? null : (
+            <NavLink
+              exact
+              className="nav-item nav-link btn btn-sm btn-primary"
+              to={editObjectUrl}
+              activeClassName="active"
+              onClick={(e) => {e.preventDefault(); props.editWorkItem(selectedWorkItemId)}}
+            >
+              Edit
+            </NavLink>
+          )}
+          {nothingSelected ? null : (
+            <NavLink
+              exact
+              className="nav-item nav-link btn btn-sm btn-danger"
+              to={deleteObjectUrl}
+              activeClassName="active"
+              onClick={(e) => {e.preventDefault(); props.deleteWorkItem(selectedWorkItemId);}}
+            >
+              Delete
+            </NavLink>
+          )}
 
-            {/* <ul className="navbar-nav">
-              <li className="nav-item active">
-                <button className="btn btn-sm btn-primary" onClick={() => this.props.newWorkItem()}>
-                  New
-                </button>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="btn btn-sm btn-primary"
-                  onClick={() => this.props.editWorkItem()}
-                  disabled={this.isAnyWorkItemSelected()}
-                >
-                  Edit
-                </button>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="btn btn-sm btn-danger"
-                  onClick={() => this.props.deleteWorkItem()}
-                  disabled={this.isAnyWorkItemSelected()}
-                >
-                  Delete
-                </button>
-              </li>
-            </ul> */}
-          </div>
-        </nav>
+        </div>
+      </nav>
 
-        {/* <p>Work Items</p> */}
-        <table className="table table-bordered table-striped table-hover table-sm">
-          <thead className="thead-dark">
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Name</th>
-              <th scope="col">Status</th>
-              <th scope="col">Priority</th>
-              <th scope="col">Assigned To</th>
-              <th scope="col">Start Date</th>
-              <th scope="col">End Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {workItemList.map(item => (
-              <WorkItemListRow
-                key={item.id}
-                workItem={item}
-                selectedWorkItem={selectedWorkItem}
-                selectedWorkItemChanged={this.props.selectedWorkItemChanged}
-              />
-            ))}
-          </tbody>
-        </table>
-      </React.Fragment>
-    );
-  }
+      {/* <p>Work Items</p> */}
+      <table className="table table-bordered table-striped table-hover table-sm">
+        <thead className="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Assigned To</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {workItemList.map(item => (
+            <WorkItemListRow
+              key={item.id}
+              workItem={item}
+              selectedWorkItem={props.selectedWorkItem}
+              selectedWorkItemChanged={props.selectedWorkItemChanged}
+              metaData={props.metaData}
+            />
+          ))}
+        </tbody>
+      </table>
+    </React.Fragment >
+  );
 }

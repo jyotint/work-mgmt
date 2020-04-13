@@ -3,7 +3,7 @@ import Constants from "../shared/constants";
 
 class TagService extends BaseService {
   constructor() {
-    super("TagService", Constants.API.TagsEndpoint);
+    super("TagService", Constants.api.tagsEndpoint);
   }
 }
 
