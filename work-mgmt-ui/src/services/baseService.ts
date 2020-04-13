@@ -50,8 +50,8 @@ export class BaseService {
 
   constructUrl(endpoint: string, id?: string): string {
     return id === undefined
-      ? `${Constants.API.BaseUrl}${Constants.Separator.URL}${endpoint}`
-      : `${Constants.API.BaseUrl}${Constants.Separator.URL}${endpoint}${Constants.Separator.URL}${id}`;
+      ? `${Constants.api.baseUrl}${Constants.separator.url}${endpoint}`
+      : `${Constants.api.baseUrl}${Constants.separator.url}${endpoint}${Constants.separator.url}${id}`;
   }
 
   getBaseUrl() {

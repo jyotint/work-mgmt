@@ -1,33 +1,34 @@
 const Constants = {
-  Separator: {
-    URL: "/"
+  separator: {
+    url: "/"
   },
 
-  FormMode: {
-    View: "FormModeView",
-    Edit: "FormModeEdit"
+  formMode: {
+    view: "FormModeView",
+    edit: "FormModeEdit"
   },
 
-  Route: {
-    Root: "/",
-    Id: "/:id",
+  route: {
+    root: "/",
+    id: "/:id",
 
-    WorkItems: "/workitems",
-    WorkItemsWithId: "/workitems/:id",
+    workItems: "/workitems",
+    workItemsWithId: "/workitems/:id",
 
-    Tags: "/tags",
-    Categories: "/categories"
+    tags: "/tags",
+    categories: "/categories"
   },
 
-  API: {
-    BaseUrl: process.env.REACT_APP_API_BASE_URL,
-    WorkItemsEndpoint: "workItems",
-    CategoriesEndpoint: "categories",
-    TagsEndpoint: "tags"
+  api: {
+    baseUrl: process.env.REACT_APP_API_BASE_URL,
+    workItemsEndpoint: "workItems",
+    categoriesEndpoint: "categories",
+    tagsEndpoint: "tags",
+    metaDataEndpoint: "metaData"
   },
 
-  Actions: {
-    WorkItem: {
+  actions: {
+    workItem: {
       SELECTED_WORKITEM: "SELECTED_WORKITEM",
       SET_WORKITEM_LIST: "SET_WORKITEM_LIST",
       GET_WORKITEM: "GET_WORKITEM",

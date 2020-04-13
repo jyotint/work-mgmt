@@ -15,10 +15,10 @@ class Body extends Component {
     return (
       <div>
         <Switch>
-          <Route path={Constants.Route.Root} exact component={HomeWorkspace} />
-          <Route path={Constants.Route.WorkItems} render={props => <WorkItemWorkspace {...props} />} />
-          <Route path={Constants.Route.Categories} component={CategoryWorkspace} />
-          <Route path={Constants.Route.Tags} component={TagWorkspace} />
+          <Route path={Constants.route.root} exact component={HomeWorkspace} />
+          <Route path={Constants.route.workItems} render={props => <WorkItemWorkspace {...props} />} />
+          <Route path={Constants.route.categories} component={CategoryWorkspace} />
+          <Route path={Constants.route.tags} component={TagWorkspace} />
         </Switch>
       </div>
     );

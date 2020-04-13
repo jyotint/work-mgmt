@@ -1,36 +1,206 @@
 {
-    "workItems" : [
-        { "id": 1, "name": "WorkItem01", "description": "WorkItem01 Description", "priority": 1, "status": "in progress", "assignedTo": "jyotindra",  "categoryId": "1", "startDate": "2020-02-25T01:00:01Z", "endDate": "2020-02-20T01:00:01Z", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 2, "name": "WorkItem02", "description": "WorkItem02 Description", "priority": 2, "status": "planned", "assignedTo": "jyotindra", "categoryId": "2", "startDate": "2020-03-01T01:00:01Z", "endDate": "2020-03-09T01:00:01Z", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 3, "name": "WorkItem03", "description": "WorkItem03 Description", "priority": 3, "status": "new", "assignedTo": "jyotindra", "categoryId": "3", "startDate": "2020-03-12T01:00:01Z", "endDate": "2020-03-15T01:00:01Z", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" }
-    ],
-
-    "workItemAssociations" : [
-        { "id": 1, "WorkItemId": "1", "parentWorkItemId": "", "deleted": 0, "createdOn": "2020-01-01T01:00:01Z", "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 1, "WorkItemId": "2", "parentWorkItemId": "", "deleted": 0, "createdOn": "2020-01-01T01:00:01Z", "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 1, "WorkItemId": "3", "parentWorkItemId": "1", "deleted": 0, "createdOn": "2020-01-01T01:00:01Z", "modifiedOn": "2020-01-01T01:00:01Z" }
-    ],
-
-    "workItemTags" : [
-        { "id": 1, "WorkItemId": "2", "tagId": "1", "deleted": 0, "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 2, "WorkItemId": "2", "tagId": "2", "deleted": 0, "modifiedOn": "2020-01-01T01:00:02Z" },
-        { "id": 3, "WorkItemId": "3", "tagId": "3", "deleted": 0, "modifiedOn": "2020-01-01T01:00:03Z" }
-    ],
-
-    "workItemTasks" : [
-        { "id": 1, "WorkItemId": "3", "name": "task03-02", "status": "in progress", "order": 2, "deleted": 0, "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 2, "WorkItemId": "3", "name": "task03-01", "status": "in progress", "order": 1, "deleted": 0, "modifiedOn": "2020-01-01T01:00:02Z" }
-    ],
-
-    "categories" : [
-        { "id": 1, "name": "category01", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 2, "name": "category01", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 3, "name": "category01", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" }
-    ],
-
-    "tags" : [
-        { "id": 1, "name": "tag01", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 2, "name": "tag02", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" },
-        { "id": 3, "name": "tag03", "deleted": 0, "createdBy": "jyotindra", "createdOn": "2020-01-01T01:00:01Z", "modifiedBy": "jyotindra", "modifiedOn": "2020-01-01T01:00:01Z" }
-    ]
+  "workItems": [
+    {
+      "id": 1,
+      "name": "WorkItem01",
+      "description": "WorkItem01 Description",
+      "priority": 1,
+      "status": "in progress",
+      "assignedTo": "jyotindra",
+      "categoryId": "1",
+      "startDate": "2020-02-25T01:00:01Z",
+      "endDate": "2020-02-20T01:00:01Z",
+      "deleted": 0,
+      "createdBy": "jyotindra",
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedBy": "jyotindra",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 2,
+      "name": "WorkItem02",
+      "description": "WorkItem02 Description",
+      "priority": 2,
+      "status": "new",
+      "assignedTo": "jyotindra",
+      "categoryId": "2",
+      "startDate": "2020-03-01T01:00:01Z",
+      "endDate": "2020-03-09T01:00:01Z",
+      "deleted": 0,
+      "createdBy": "jyotindra",
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedBy": "jyotindra",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 3,
+      "name": "WorkItem03",
+      "description": "WorkItem03 Description",
+      "priority": "7",
+      "status": "planned",
+      "assignedTo": "jyotindra",
+      "categoryId": "3",
+      "startDate": "2020-03-12T01:00:01Z",
+      "endDate": "2020-03-15T01:00:01Z",
+      "deleted": 0,
+      "createdBy": "jyotindra",
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedBy": "jyotindra",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    }
+  ],
+  "workItemAssociations": [
+    {
+      "id": 1,
+      "WorkItemId": "1",
+      "parentWorkItemId": "",
+      "deleted": 0,
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 1,
+      "WorkItemId": "2",
+      "parentWorkItemId": "",
+      "deleted": 0,
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 1,
+      "WorkItemId": "3",
+      "parentWorkItemId": "1",
+      "deleted": 0,
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    }
+  ],
+  "workItemTags": [
+    {
+      "id": 1,
+      "WorkItemId": "2",
+      "tagId": "1",
+      "deleted": 0,
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 2,
+      "WorkItemId": "2",
+      "tagId": "2",
+      "deleted": 0,
+      "modifiedOn": "2020-01-01T01:00:02Z"
+    },
+    {
+      "id": 3,
+      "WorkItemId": "3",
+      "tagId": "3",
+      "deleted": 0,
+      "modifiedOn": "2020-01-01T01:00:03Z"
+    }
+  ],
+  "workItemTasks": [
+    {
+      "id": 1,
+      "WorkItemId": "3",
+      "name": "task03-02",
+      "status": "in progress",
+      "order": 2,
+      "deleted": 0,
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 2,
+      "WorkItemId": "3",
+      "name": "task03-01",
+      "status": "in progress",
+      "order": 1,
+      "deleted": 0,
+      "modifiedOn": "2020-01-01T01:00:02Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "category01",
+      "deleted": 0,
+      "createdBy": "jyotindra",
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedBy": "jyotindra",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 2,
+      "name": "category01",
+      "deleted": 0,
+      "createdBy": "jyotindra",
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedBy": "jyotindra",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 3,
+      "name": "category01",
+      "deleted": 0,
+      "createdBy": "jyotindra",
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedBy": "jyotindra",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "tag01",
+      "deleted": 0,
+      "createdBy": "jyotindra",
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedBy": "jyotindra",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 2,
+      "name": "tag02",
+      "deleted": 0,
+      "createdBy": "jyotindra",
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedBy": "jyotindra",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    },
+    {
+      "id": 3,
+      "name": "tag03",
+      "deleted": 0,
+      "createdBy": "jyotindra",
+      "createdOn": "2020-01-01T01:00:01Z",
+      "modifiedBy": "jyotindra",
+      "modifiedOn": "2020-01-01T01:00:01Z"
+    }
+  ],
+  "metaData": [
+    {
+      "id": "status",
+      "value": [
+        {
+          "key": "new",
+          "value": "New"
+        },
+        {
+          "key": "planned",
+          "value": "Planned"
+        },
+        {
+          "key": "in progress",
+          "value": "In Progress"
+        },
+        {
+          "key": "deferred",
+          "value": "Deferred"
+        },
+        {
+          "key": "done",
+          "value": "Done"
+        }
+      ]
+    }
+  ]
 }
